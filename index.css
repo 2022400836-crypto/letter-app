@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #0f0f0f;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  overflow-x: hidden;
+}
+
+/* BACKGROUND */
+.bg-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent);
+  top: -100px;
+  left: -100px;
+  z-index: -1;
+}
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 700px;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #aaa;
+  margin: 8px 0;
+}
+
+.recipient {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.recipient span {
+  font-weight: 600;
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  margin-bottom: 30px;
+}
+
+/* INPUT */
+.form-group {
+  margin-bottom: 15px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 14px;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* BUTTON */
+.post-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: white;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.post-btn:hover {
+  transform: translateY(-2px);
+  background: #e6e6e6;
+}
+
+/* LETTER FEED */
+.letters {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* LETTER CARD */
+.letter {
+  background: rgba(255,255,255,0.06);
+  padding: 15px;
+  border-radius: 15px;
+  animation: fadeIn 0.3s ease;
+  display: block;
+}
+
+.letter h3 {
+  margin-bottom: 5px;
+}
+
+.letter p {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* FADE */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================== */
+/* SUCCESS MODAL FIX */
+/* ===================== */
+
+.success-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+  z-index: 9999;
+}
+
+.success-modal.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.success-box {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 300px;
+  animation: pop 0.3s ease;
+}
+
+.success-box h2,
+.success-box p {
+  color: black;
+}
+
+.success-box .checkmark {
+  font-size: 40px;
+  color: green;
+  margin-bottom: 10px;
+}
+
+.success-box button {
+  margin-top: 15px;
+  padding: 8px 15px;
+  border: none;
+  background: black;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* POP ANIMATION */
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
