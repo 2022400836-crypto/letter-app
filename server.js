@@ -1,10 +1,15 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
+// ✅ Serve frontend FIRST
+app.use(express.static(path.join(__dirname, "public")));
 
 // MySQL connection
 const db = mysql.createConnection({
@@ -22,10 +27,10 @@ db.connect(err => {
   }
 });
 
-// TEST
-app.get("/", (req, res) => {
-  res.send("Server is working ✔");
-});
+// ❌ REMOVE THIS (IMPORTANT)
+// app.get("/", (req, res) => {
+//   res.send("Server is working ✔");
+// });
 
 // GET letters
 app.get("/letters", (req, res) => {
@@ -38,16 +43,14 @@ app.get("/letters", (req, res) => {
   });
 });
 
-// POST letter (FIXED)
+// POST letter
 app.post("/letters", (req, res) => {
-  console.log("BODY RECEIVED:", req.body);
-
   const { name, message } = req.body;
 
   db.query(
     "INSERT INTO letters (name, message) VALUES (?, ?)",
     [name, message],
-    (err, result) => {
+    (err) => {
       if (err) {
         console.log("INSERT ERROR:", err);
         return res.status(500).json({ error: err.message });
@@ -58,9 +61,9 @@ app.post("/letters", (req, res) => {
   );
 });
 
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
-});
-const path = require("path");
+// IMPORTANT for Render
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "public")));
+app.listen(PORT, () => {
+  console.log("Server running on port " + PORT);
+});
